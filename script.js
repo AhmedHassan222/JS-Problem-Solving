@@ -124,4 +124,98 @@ function find2SmallestNumberInArray(arr) {
 }
 // console.log(find2SmallestNumberInArray([1,2,341,1,6,7,86,24]))
 
-//16 
+
+//16 Find the missing number in an array of 1 to n.
+function findeMisingNumberInArray(arr) {
+    let n = Math.max(...arr);
+    let expectedSum = (n * (n + 1)) / 2;
+    let actualSum = arr.reduce((sum, num) => sum + num, 0);
+    return expectedSum - actualSum;
+}
+// console.log(findeMisingNumberInArray([1,2,3,4,6]))
+
+//17 Find the intersection of two arrays.
+function findIntersectionBetweenTwoArray(arr1, arr2) {
+    return Array.from(new Set(arr1.filter(item => arr2.includes(item))));
+}
+
+// console.log(findIntersectionBetweenTwoArray([1, 5, 6, 2, 3, 4, 3], [5, 3, 9, 2, 3, 4, 3]))
+
+//18 Find the union of two arrays.
+function findUnionOfArrays(arr1, arr2) {
+    return [...new Set([...arr1, ...arr2])]
+}
+
+// console.log(findUnionOfArrays([1, 5, 6, 2, 3, 4, 3], [5, 3, 9, 2, 3, 4, 3]))
+
+//19 Find the difference between two arrays.
+function findDifferenceBetweenTwoArrays(arr1, arr2) {
+    let set2 = new Set(arr2)
+    return [...new Set(arr1.filter(item => !set2.has(item)))];
+}
+// console.log(findDifferenceBetweenTwoArrays([1, 5, 6, 2, 3, 4, 3], [5, 3, 9, 2, 3, 4, 3]))
+
+//20 Remove falsy values from an array.
+function RemoveFulsyValues(arr) {
+    return arr.filter(item => Boolean(item))
+}
+
+// console.log(RemoveFulsyValues([false,0,"0",1,"ahmed",true,{},[],null, -1]))
+
+//21 Flatten a nested array.
+function flatenArray(arrOfArrays) {
+    // const result = [];
+
+    // arrOfArrays.forEach(arr => {
+    //     arr.forEach(Element => {
+    //         result.push(Element);
+    //     });
+    // });
+
+    // return result;
+    return arrOfArrays.flat();
+}
+// console.log(flatenArray([[1, 23, 4, 'ahmed'], [1, "a"], [2, 3]]))
+//22 Check if two strings are anagrams.
+function areAnagrams(str1, str2) {
+    return str1.trim().toLowerCase().split('').sort().join('') === str2.trim().toLowerCase().split('').sort().join('');
+}
+// console.log(areAnagrams("DEahM",'ahmed'))
+
+//23 Implement a function to generate a random string.
+function generateRandomString() {
+    const CHAR_SET = "ASDFJKLCSD";
+    return Array.from({ length: 10 }, () => CHAR_SET[Math.floor(Math.random() * CHAR_SET.length)]).join('');
+}
+
+// console.log(generateRandomString())
+//24 Find the first non-repeating character in a string.
+function findFirstNonRepeating(str) {
+    // aahhmeeddhassan
+    const obj = {};
+    for (let char of str)
+        obj[char] = (obj[char] || 0) + 1
+
+    for(let char of str)
+        if(obj[char] == 1)
+            return char
+}
+// console.log(findFirstNonRepeating("ahmedhassan"))
+
+//25 Find all occurrences of a character in a string.
+function charsOfString(str){
+    const obj = {};
+    for(let char of str.toLowerCase())
+        obj[char] = (obj[char] || 0) + 1
+    return obj;
+}
+// console.log(charsOfString("ahmedhassan"))
+
+//26 Convert a string to title case.
+function convertStringToTitleCase(str){
+    return str.split(' ').map(word => word.at(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+}
+
+// console.log(convertStringToTitleCase("ahmed hassan hussein abdel sayed hassan omar"))
+
+//27 Implement a function to check if a given number is prime.
