@@ -312,30 +312,340 @@ function mergeTwoSortedArray(arr1, arr2) {
 
 // console.log(mergeTwoSortedArray([5,3,1,12,6,8],[89,54,2,1,74]))
 
-// class Stack {
-//     constructor() {
-//         this.count = 0;
-//         this.arr = [];
+//32 Find the frequency of elements in an array.
+function findFrequency(arr) {
+    const obj = {};
+    arr.forEach(element => {
+        obj[element] = (obj[element] || 0) + 1;
+    });
+    return obj;
+}
+// console.log(findFrequency(["ahmed","mohamed","ahmed","sayed","sayed","samir"]))
+
+//33 Convert an array of objects into a single object.
+function convertArrayToObject(arr) {
+    const result = {};
+    for (const index in arr) {
+        result[index] = arr[index];
+    }
+    return result;
+}
+let arr = [{ name: 'ahmed', age: 22 }, { sex: 'male' }, { xx: "mo salah", salary: 34234123 }]
+
+// console.log(convertArrayToObject(arr))
+//34 Implement a deep clone function for objects.
+function deepClone(obj1, obj2) {
+
+}
+
+//35 Find the longest word in a string.
+function longestWord(text) {
+    const arrOfWords = text.split(' ');
+    let theLongestWord = arrOfWords[0];
+
+    for (let i = 1; i < arrOfWords.length; i++)
+        if (theLongestWord.length < arrOfWords[i].length)
+            theLongestWord = arrOfWords[i];
+
+    return theLongestWord;
+}
+
+// console.log(longestWord("xxx x xx xxxx"))
+
+// 36 Group elements of an array based on a given key.
+function groupBy(array, key) {
+    return array.reduce((acc, obj) => {
+        const groupKey = obj[key];
+        if (!acc[groupKey]) {
+            acc[groupKey] = [];
+        }
+        acc[groupKey].push(obj);
+        return acc;
+    }, {});
+}
+const data = [
+    { id: 1, category: "fruit", name: "Apple" },
+    { id: 2, category: "fruit", name: "Banana" },
+    { id: 3, category: "vegetable", name: "Carrot" },
+    { id: 4, category: "fruit", name: "Mango" },
+    { id: 5, category: "vegetable", name: "Broccoli" }
+];
+
+const groupedData = groupBy(data, "category");
+// console.log(groupedData);
+
+// 37 Count occurrences of words in a string.
+function countOccurencesOfWords(text) {
+    const arrOfWords = text.split(' ');
+    const result = {};
+    for (const word of arrOfWords)
+        result[word] = (result[word] || 0) + 1
+    return result;
+}
+
+// console.log(countOccurencesOfWords("ahmed samy say to me that he like girls, and ahmed says to me that he doensn't love girls"))
+
+//38 Convert an object into an array of key-value pairs.
+function convertObjectToKeyValuePairArray(obj) {
+    return Object.entries(obj);
+}
+
+// console.log(convertObjectToKeyValuePairArray({ name: "ahmed", age: 22 }))
+
+//39 Convert an array of key-value pairs into an object.
+function convertKeyValuePairArrayToObject(arr) {
+    return Object.fromEntries(arr)
+}
+
+// console.log(convertKeyValuePairArrayToObject([["name","ahmed"],["age",22]]))
+
+//40 Write a function to check if an object is empty.
+function isEmptyObject(obj) {
+    return Object.keys(obj).length == 0 ? "empty object" : "not empty object";
+}
+// console.log(isEmptyObject({name:"ahmed"}))
+
+//41 Reverse words in a sentence without using .split().reverse().join().
+function reverseWordsInSentence(sentence) {
+    let result = '';
+    let word = "";
+    for (let i = 0; i < sentence.length; i++)
+        if (sentence[i] !== " ") {
+            word += sentence[i];
+        } else {
+            result = `${word} ${result}`;
+            word = "";
+        }
+
+    if (word !== "")
+        result = `${word} ${result}`;
+    return result.trim();
+}
+// console.log(reverseWordsInSentence("hello world ahmed     "))
+
+
+//42 Check if a string contains only digits.
+function onlyDigits(text) {
+    if (!text) return false;
+    for (const char of text) {
+        if (char < "0" || char > "9")
+            return false
+    }
+    return true
+}
+
+// console.log(onlyDigits('1234'))
+//43 Implement a function to trim extra spaces from a string.
+function trimString(str) {
+    return str.trim().replace(/\s+/g, " ");
+}
+// console.log(trimString("          ahmed     hassan      "));
+
+//44 Convert a string to camelCase.
+function camelCase(text) {
+    return text.toLowerCase().split(' ').map((word, index) => index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)).join('');
+
+}
+
+// console.log(camelCase("AHMED hassan"))
+
+//45 Convert a string to snake_case.
+function snake_case(text) {
+    return text.trim().toLowerCase().replace(/\s+/g, "_");
+}
+// console.log(snake_case(" AHMED hassan"))
+
+//46 Convert a string to kebab-case.
+function kebabCase(text) {
+    return text.trim().toLowerCase().replace(/\s+/g, "-");
+}
+//  console.log(kebabCase(" AHMED hassan"))
+//47 Find the longest common prefix among an array of strings.
+function findLongestCommonPrefix(arr) {
+    // ["flower","flow","flight"]
+    let i = 0;
+    const arr = [];
+    while (!arr[0][i] || !arr[1][i] || !arr[2][i])
+        return arr.reduce((total))
+}
+console.log(findLongestCommonPrefix(["flower", "flow", "flight"][1][5]))
+
+//91 Implement a stack using an array.
+
+class Stack {
+    constructor() {
+        this.arr = [];
+        this.top = -1;
+        this.count = 0;
+    }
+    push(val) {
+        this.top++;
+        this.arr[this.top] = val;
+        this.count++;
+    }
+
+    isEmpty() {
+        return this.top == -1;
+    }
+
+    pop() {
+        if (this.isEmpty())
+            return "stack is empty!!"
+        let popedValue = this.arr[this.top];
+        this.arr[this.top] = undefined;
+        this.top--;
+        this.count--;
+        return popedValue
+    }
+
+    peek() {
+        if (this.isEmpty())
+            return "stack is empty"
+        return this.arr[this.top];
+    }
+
+    display() {
+        if (this.isEmpty())
+            return "Stack is Empty!!"
+        for (let i = 0; i < this.count; i++)
+            console.log(this.arr[i])
+    }
+}
+// const st = new Stack();
+// st.push("ahmed");
+// st.push("mohamed")
+// st.display();
+
+//92 Implement a queue using an array.
+class queue {
+    constructor() {
+        this.front = -1;
+        this.rare = -1;
+        this.arr = [];
+        this.count = 0;
+    }
+    isEmpty() {
+        return this.count == 0;
+    }
+    enqueue(val) {
+        if (this.isEmpty())
+            this.front++;
+        this.rare++;
+        this.arr[this.rare] = val;
+        this.count++;
+    }
+    dequeu() {
+        if (this.isEmpty())
+            return "queue is empty!!!";
+        let dequeuedValue = this.arr[this.front];
+        this.arr[this.front] = undefined;
+        this.front++;
+        this.count--;
+        return dequeuedValue;
+
+    }
+    display() {
+        if (this.isEmpty())
+            return "Queue is Empty!!"
+        for (let i = this.front; i <= this.rare; i++) {
+            console.log(this.arr[i])
+
+        }
+    }
+    size() {
+        return this.count;
+    }
+    getFront() {
+        return this.arr[this.front];
+    }
+}
+
+// const q = new queue();
+// q.enqueue(5)
+// q.enqueue(7)
+// q.enqueue(3)
+// q.enqueue(15)
+// q.dequeu()
+// console.log(q.getFront())
+
+// //93 Implement a function to check if a given expression has balanced parentheses.
+// function isPalanced(text) {
+//     // text => ((){[]]}
+//     let obj = {
+//         "(": ")",
+//         "{": "}",
+//         "[": "]"
 //     }
-//     push(val) {
-//         this.arr.push(val);
-//         this.count++;
+//     if (text == '')
+//         return "It's not Palanced";
+//     const stack = new Stack();
+//     for (let ch of text)
+//         if (ch == "(" || ch == "{" || ch == "[")
+//             stack.push(ch);
+//         else if (ch == ")" || ch == "}" || ch == "]") {
+//             if (stack.isEmpty() || ch !== obj[stack.peek()]) return "It's not Palanced"
+//             stack.pop();
+//         }
+//     return stack.isEmpty() ? "It's Palanced" : "It's not Palanced";
+// }
+
+// // console.log(isPalanced("}{"))
+
+// //94 Implements Linked List
+// class Node {
+//     constructor(_val, _next) {
+//         this.value = _val;
+//         this.next = _next;
+//     }
+// }
+// class LinkedList {
+//     constructor() {
+//         this.head = null;
+//         this.tail = null;
+//         this.arr = [];
+//         this.count = 0;
 //     }
 //     isEmpty() {
 //         return this.count === 0;
 //     }
-//     pop() {
-//         this.arr.pop();
-//         this.top--;
+
+//     add(val) {
+//         let newNode = new Node();
+//         if (this.isEmpty()) {
+//             newNode = new Node(val, null);
+//             this.head = newNode;
+//             this.tail = newNode;
+//         }
+//         else {
+//             newNode = new Node(val, null);
+//             this.tail.next = newNode;
+//             this.tail = newNode;
+//         }
+//         this.count++;
+//     }
+//     remove() {
+//         if (this.isEmpty())
+//             return "Linked List is empty!!!";
+//         const pointer = this.head;
+//         for (let i = 0; i < this.count - 1; i++) {
+//             pointer = pointer.next;
+//         }
+//         pointer.next = null;
+//         this.tail = pointer;
 //         this.count--;
 //     }
 //     display() {
-//         for (let i = 0; i < this.count; i++)
-//             console.log(this.arr[i])
+//         const pointer = this.head;
+//         for (let i = 0; i < this.count - 1; i++) {
+//             console.log(this.pointer.value);
+//             pointer = pointer.next;
+//         }
 //     }
 // }
-// const st = new Stack();
-// st.push("ahmed");
-// st.push("mohamed")
-// st.pop();
-// st.display();
+
+// const list = new LinkedList();
+// list.add(5);
+// list.add(3);
+// list.add(23);
+// list.add(9);
+// list.display();
